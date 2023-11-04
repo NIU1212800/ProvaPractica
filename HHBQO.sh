@@ -16,12 +16,19 @@ En_desenvolupament(){
 
 }
 
+OpcioNoValida(){
+
+	echo "Error: Opció no existent al menú."
+	sleep 3
+	clear
+}
+
 
 fitxer=$1
 
 opcio=1
 
-while [ $opcio -gt 0 ];
+while [ $opcio -ne 0 ];
 do
 	echo "----------------------------------------"
 	echo "Base de Dades del catàleg de HBBQO"
@@ -34,11 +41,17 @@ do
 
 	echo "Indica opció: "
 	read opcio
-
-	case $opcio in
-		1)En_desenvolupament;;
-		2)En_desenvolupament;;
-		3)En_desenvolupament;;
-		4)En_desenvolupament;;
+	
+	if [ $opcio -lt 0 ] || [ $opcio -ge 4 ];
+	then
+		OpcioNoValida
+	else
+		case $opcio in
+			1)En_desenvolupament;;
+			2)En_desenvolupament;;
+			3)En_desenvolupament;;
+			4)En_desenvolupament;;
+			0)echo "Gràcies per la seva visita a HBBQO";;
 	esac
+	fi
 done
